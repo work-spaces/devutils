@@ -55,9 +55,11 @@ rust_add(
     deps = ["spaces0"],
 )
 
+RUST_TOOLCHAIN = "rust-linux-toolchain" if info_is_platform_linux() else "rust-macos-toolchain"
+
 checkout_add_hard_link_asset(
     "rust_toolchain_toml",
-    source = "{}/rust-toolchain.toml".format(SPACES_CHECKOUT_PATH),
+    source = "{}/{}.toml".format(SPACES_CHECKOUT_PATH, RUST_TOOLCHAIN),
     destination = "rust-toolchain.toml",
 )
 
