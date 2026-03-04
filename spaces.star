@@ -20,7 +20,7 @@ load("repos.star", "REPOS")
 
 DEVUTILS_VERSION = "0.1.0"
 
-def _build_and_publish(name, args):
+def _build_and_publish(name, first_dep, args):
     RULES = {
         "install": "{}_install".format(name),
     }
@@ -44,15 +44,22 @@ def _build_and_publish(name, args):
         ] + extra_args + args,
         working_directory = "//repos/{}".format(name),
         visibility = visibility_private(),
+        deps = [first_dep] if first_dep != None else [],
     )
 
     return RULES
 
 install_deps = []
+first_dep = None
 
 for (key, values) in REPOS.items():
-    rules = _build_and_publish(key, values[2])
-    install_deps.append(rules["install"])
+    # Force all other to depend on the first dep so that
+    # cargo install will run with rustup on the first go
+    rules = _build_and_publish(key, first_dep, values[2])
+    if first_dep == None:
+        first_dep = rules["install"]
+    else:
+        install_deps.append(rules["install"])
 
 run_add_target(
     "install",
