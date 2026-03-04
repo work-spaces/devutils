@@ -1,0 +1,25 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "**"
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-14
+          - runner: ubuntu-22.04
+          - runner: ubuntu-22.04-arm
+
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - uses: work-spaces/spaces-checkout-run@v0.1.1
+        with:
+          checkout: --url=https://github.com/work-spaces/spaces --rev=${{ github.head_ref }}
+          run: //spaces:check_rust_clippy
