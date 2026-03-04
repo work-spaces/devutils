@@ -21,5 +21,5 @@ jobs:
     steps:
       - uses: work-spaces/spaces-checkout-run@v0.1.1
         with:
-          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.head_ref }}
+          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }}
           run: //devutils:devutils
