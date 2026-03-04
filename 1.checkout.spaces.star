@@ -1,6 +1,5 @@
 """
-Spaces starlark checkout/run script to make changes to spaces, printer, and archiver.
-With VSCode/Zed integration
+Checkout rules for getting repos to build the devutils
 """
 
 load("//@star/packages/star/coreutils.star", "coreutils_add_rs_tools")
@@ -12,12 +11,9 @@ load(
     "//@star/sdk/star/checkout.star",
     "checkout_add_hard_link_asset",
     "checkout_add_repo",
-    "checkout_update_asset",
-    "checkout_update_env",
 )
 load(
     "//@star/sdk/star/info.star",
-    "info_get_path_to_store",
     "info_is_ci",
 )
 load(
@@ -25,6 +21,7 @@ load(
     "workspace_get_absolute_path",
     "workspace_get_path_to_checkout",
 )
+load("repos.star", "REPOS")
 
 # Configure the top level workspace
 
@@ -49,17 +46,6 @@ checkout_add_hard_link_asset(
     source = "{}/rust-toolchain.toml".format(SPACES_CHECKOUT_PATH),
     destination = "rust-toolchain.toml",
 )
-
-REPOS = {
-    "coreutils": ["https://github.com/uutils/coreutils", "0.6.0"],
-    "findutils": ["https://github.com/uutils/findutils", "0.8.0"],
-    "fd-find": ["https://github.com/sharkdp/fd", "v10.3.0"],
-    "bat": ["https://github.com/rivy/rust.bat", "v0.15.4.2"],
-    "xh": ["https://github.com/ducaale/xh", "v0.25.3"],
-    "ripgrep": ["https://github.com/BurntSushi/ripgrep", "15.1.0"],
-    "rm-improved": ["https://github.com/nivekuil/rip", "0.13.1"],
-    "hyperfine": ["https://github.com/sharkdp/hyperfine", "v1.20.0"],
-}
 
 for (key, value) in REPOS.items():
     checkout_add_repo(
