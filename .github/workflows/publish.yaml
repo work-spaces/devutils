@@ -6,6 +6,9 @@ on:
     tags:
       - "**"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     strategy:
@@ -18,7 +21,8 @@ jobs:
     runs-on: ${{ matrix.runner }}
 
     steps:
-      - uses: work-spaces/spaces-checkout-run@v0.1.1
+      - uses: work-spaces/spaces-checkout-run@ae49a1433cbe50c916d7dc91e28628ff8f5429bc
         with:
           checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }}
           run: //devutils:devutils
+          github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -57,13 +57,6 @@ rust_add(
     deps = ["spaces0"],
 )
 
-checkout_add_exec(
-    "rustup_create_downloads_dir",
-    command = "mkdir",
-    args = ["-p", "{}/rustup/downloads".format(info_get_path_to_store())],
-    deps = [":rust_toolchain"],
-)
-
 RUST_TOOLCHAIN = "rust-linux-toolchain" if info_is_platform_linux() else "rust-macos-toolchain"
 
 checkout_add_hard_link_asset(
