@@ -44,7 +44,6 @@ rust_add(
     deps = ["spaces0"],
 )
 
-
 checkout_add_hard_link_asset(
     "rust_toolchain_toml",
     source = "{}/rust-toolchain.toml".format(SPACES_CHECKOUT_PATH),
@@ -54,7 +53,7 @@ checkout_add_hard_link_asset(
 REPOS = {
     "coreutils": ["https://github.com/uutils/coreutils", "0.6.0"],
     "findutils": ["https://github.com/uutils/findutils", "0.8.0"],
-    "fd-find": ["https://github.com/sharkdp/fd", "v0.23.4"],
+    "fd-find": ["https://github.com/sharkdp/fd", "v10.3.0"],
     "bat": ["https://github.com/rivy/rust.bat", "v0.15.4.2"],
     "xh": ["https://github.com/ducaale/xh", "v0.25.3"],
     "ripgrep": ["https://github.com/BurntSushi/ripgrep", "15.1.0"],
@@ -64,8 +63,8 @@ REPOS = {
 
 for (key, value) in REPOS.items():
     checkout_add_repo(
-        key,
+        "repos/{}".format(key),
         url = value[0],
         rev = value[1],
-        clone = "Shallow"
+        clone = "Shallow",
     )
