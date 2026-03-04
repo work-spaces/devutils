@@ -57,7 +57,7 @@ REPOS = {
     "bat": ["https://github.com/rivy/rust.bat", "v0.15.4.2"],
     "xh": ["https://github.com/ducaale/xh", "v0.25.3"],
     "ripgrep": ["https://github.com/BurntSushi/ripgrep", "15.1.0"],
-    "rm-improved": ["https://github.com/nivekuil/rip", "v0.13.1"],
+    "rm-improved": ["https://github.com/nivekuil/rip", "0.13.1"],
     "hyperfine": ["https://github.com/sharkdp/hyperfine", "v1.20.0"],
 }
 
