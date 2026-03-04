@@ -108,18 +108,22 @@ if info_is_platform_linux():
             env_prepend(
                 "PATH",
                 value = MUSL_BIN_PATH,
+                help = "Add the musl bins to the path",
             ),
             env_assign(
                 "CC_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
+                help = "Let cargo know what CC to use for musl",
             ),
             env_assign(
                 "AR_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
                 value = "{}-unknown-linux-musl-ar".format(ARCH[PLATFORM]),
+                help = "Let cargo know what AR to use for musl",
             ),
             env_assign(
                 "CARGO_TARGET_{}_UNKNOWN_LINUX_MUSL_LINKER".format(ARCH[PLATFORM].upper()),
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
+                help = "Let cargo know what linker to use for musl",
             ),
         ],
     )
