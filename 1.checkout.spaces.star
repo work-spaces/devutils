@@ -13,7 +13,6 @@ load("//@star/packages/star/starship.star", "starship_add_bash")
 load(
     "//@star/sdk/star/checkout.star",
     "checkout_add_env_vars",
-    "checkout_add_exec",
     "checkout_add_hard_link_asset",
     "checkout_add_platform_archive",
     "checkout_add_repo",
@@ -21,11 +20,11 @@ load(
 load(
     "//@star/sdk/star/env.star",
     "env_assign",
+    "env_inherit",
     "env_prepend",
 )
 load(
     "//@star/sdk/star/info.star",
-    "info_get_path_to_store",
     "info_get_platform_name",
     "info_is_ci",
     "info_is_platform_linux",
@@ -128,6 +127,11 @@ if info_is_platform_linux():
                 "CARGO_TARGET_{}_UNKNOWN_LINUX_MUSL_LINKER".format(ARCH[PLATFORM].upper()),
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
                 help = "Let cargo know what linker to use for musl",
+            ),
+            env_inherit(
+                "GH_TOKEN",
+                is_secret = True,
+                help = "Add GH_TOKEN to env for use with gh publish",
             ),
         ],
     )
