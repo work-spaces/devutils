@@ -6,6 +6,9 @@ on:
     tags:
       - "**"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     strategy:
@@ -14,12 +17,12 @@ jobs:
         include:
           - runner: macos-14
           - runner: ubuntu-22.04
-          - runner: ubuntu-22.04-arm
 
     runs-on: ${{ matrix.runner }}
 
     steps:
-      - uses: work-spaces/spaces-checkout-run@v0.1.1
+      - uses: work-spaces/spaces-checkout-run@v0.1.2
         with:
-          checkout: --url=https://github.com/work-spaces/spaces --rev=${{ github.head_ref }}
-          run: //spaces:check_rust_clippy
+          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }}
+          run: //devutils:devutils
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -20,6 +20,7 @@ load(
 load(
     "//@star/sdk/star/env.star",
     "env_assign",
+    "env_inherit",
     "env_prepend",
 )
 load(
@@ -55,9 +56,11 @@ rust_add(
     deps = ["spaces0"],
 )
 
+RUST_TOOLCHAIN = "rust-linux-toolchain" if info_is_platform_linux() else "rust-macos-toolchain"
+
 checkout_add_hard_link_asset(
     "rust_toolchain_toml",
-    source = "{}/rust-toolchain.toml".format(SPACES_CHECKOUT_PATH),
+    source = "{}/{}.toml".format(SPACES_CHECKOUT_PATH, RUST_TOOLCHAIN),
     destination = "rust-toolchain.toml",
 )
 
@@ -108,18 +111,27 @@ if info_is_platform_linux():
             env_prepend(
                 "PATH",
                 value = MUSL_BIN_PATH,
+                help = "Add the musl bins to the path",
             ),
             env_assign(
                 "CC_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
+                help = "Let cargo know what CC to use for musl",
             ),
             env_assign(
                 "AR_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
                 value = "{}-unknown-linux-musl-ar".format(ARCH[PLATFORM]),
+                help = "Let cargo know what AR to use for musl",
             ),
             env_assign(
                 "CARGO_TARGET_{}_UNKNOWN_LINUX_MUSL_LINKER".format(ARCH[PLATFORM].upper()),
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
+                help = "Let cargo know what linker to use for musl",
+            ),
+            env_inherit(
+                "GH_TOKEN",
+                is_secret = True,
+                help = "Add GH_TOKEN to env for use with gh publish",
             ),
         ],
     )
