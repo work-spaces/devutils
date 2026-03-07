@@ -18,7 +18,7 @@ load("//@star/sdk/star/visibility.star", "visibility_private")
 load("//@star/sdk/star/ws.star", "workspace_get_absolute_path")
 load("repos.star", "REPOS")
 
-DEVUTILS_VERSION = "0.1.0"
+DEVUTILS_VERSION = "0.1.2"
 
 def _build_and_publish(name, first_dep, args):
     RULES = {
