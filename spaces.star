@@ -10,7 +10,6 @@ load(
 )
 load(
     "//@star/sdk/star/run.star",
-    "run_add_archive",
     "run_add_exec",
     "run_add_target",
 )
