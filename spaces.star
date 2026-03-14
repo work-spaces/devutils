@@ -7,6 +7,7 @@ load(
     "//@star/sdk/star/info.star",
     "info_get_platform_name",
     "info_is_platform_linux",
+    "info_set_max_queue_count",
 )
 load(
     "//@star/sdk/star/run.star",
@@ -17,7 +18,9 @@ load("//@star/sdk/star/visibility.star", "visibility_private")
 load("//@star/sdk/star/ws.star", "workspace_get_absolute_path")
 load("repos.star", "REPOS")
 
-DEVUTILS_VERSION = "0.1.7"
+DEVUTILS_VERSION = "0.1.8"
+
+info_set_max_queue_count(1)
 
 def _build_and_publish(name, first_dep, args):
     RULES = {
@@ -40,6 +43,7 @@ def _build_and_publish(name, first_dep, args):
         args = [
             "install",
             "--root={}/build/install".format(workspace_get_absolute_path()),
+            "--locked",
         ] + extra_args + args,
         working_directory = "//repos/{}".format(name),
         visibility = visibility_private(),
