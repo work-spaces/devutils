@@ -7,7 +7,7 @@ for each tool to build and publish
 
 REPOS = {
     "bat": ["https://github.com/rivy/rust.bat", "v0.15.4.2", ["--path=.", "--profile=release"]],
-    "coreutils": ["https://github.com/uutils/coreutils", "0.6.0", ["--path=.", "--profile=release-fast"]],
+    "coreutils": ["https://github.com/uutils/coreutils", "0.7.0", ["--path=.", "--profile=release-fast", "--features=feat_os_unix_musl"]],
     "diffutils": ["https://github.com/uutils/diffutils", "v0.5.0", ["--path=.", "--profile=release-fast"]],
     "fd-find": ["https://github.com/sharkdp/fd", "v10.3.0", ["--path=.", "--profile=release"]],
     "findutils": ["https://github.com/uutils/findutils", "0.8.0", ["--path=.", "--profile=dist"]],
