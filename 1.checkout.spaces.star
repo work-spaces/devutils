@@ -98,18 +98,6 @@ if info_is_platform_linux():
         },
     )
 
-    checkout_add_exec(
-        "apt_install",
-        command = "sudo",
-        args = [
-            "apt",
-            "install",
-            "-y",
-            "libdbus-1-dev",
-            "pkg-config",
-        ],
-    )
-
     PATHS = {
         "linux-aarch64": "aarch64-unknown-linux-musl",
         "linux-x86_64": "x86_64-unknown-linux-musl",
