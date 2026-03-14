@@ -6,8 +6,8 @@ load("//@star/packages/star/package.star", "package_add")
 load("//@star/packages/star/rust.star", "rust_add")
 load(
     "//@star/packages/star/spaces-cli.star",
+    "spaces_add_devutils",
     "spaces_add_star_formatter",
-    "spaces_isolate_workspace",
 )
 load("//@star/packages/star/starship.star", "starship_add_bash")
 load(
@@ -46,16 +46,15 @@ if not info_is_ci():
 
     starship_add_bash("starship0", shortcuts = SHORTCUTS)
 
-spaces_isolate_workspace("spaces0", "v0.15.27", system_paths = ["/usr/bin", "/bin"])
+spaces_add_devutils(
+    "spaces0",
+    "v0.15.28",
+    "devutils-v0.1.5",
+    system_paths = ["/usr/bin", "/bin"],
+)
 spaces_add_star_formatter("star_formatter", configure_zed = True, deps = ["spaces0"])
 
 package_add("github.com", "cli", "cli", "v2.87.3")
-
-rust_add(
-    "rust_toolchain",
-    version = "1.93",
-    deps = ["spaces0"],
-)
 
 RUST_TOOLCHAIN = "rust-linux-toolchain" if info_is_platform_linux() else "rust-macos-toolchain"
 
@@ -63,6 +62,13 @@ checkout_add_hard_link_asset(
     "rust_toolchain_toml",
     source = "{}/{}.toml".format(SPACES_CHECKOUT_PATH, RUST_TOOLCHAIN),
     destination = "rust-toolchain.toml",
+)
+
+rust_add(
+    "rust_toolchain",
+    version = "1.93",
+    deps = ["spaces0", ":rust_toolchain_toml"],
+    rust_toolchain_toml_dir = "//.",
 )
 
 for (key, value) in REPOS.items():
