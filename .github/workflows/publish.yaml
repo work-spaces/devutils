@@ -21,7 +21,7 @@ jobs:
     runs-on: ${{ matrix.runner }}
 
     steps:
-      - uses: work-spaces/spaces-checkout-run@v0.1.2
+      - uses: work-spaces/spaces-checkout-run@455a73b87cb543d8d14988980b3ed825b293fef1
         with:
           checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }}
           run: //devutils:devutils
