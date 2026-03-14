@@ -135,11 +135,6 @@ if info_is_platform_linux():
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
                 help = "Let cargo know what linker to use for musl",
             ),
-            env_assign(
-                "PKG_CONFIG_ALLOW_CROSS",
-                value = "1",
-                help = "Allow pkg-config to work when targeting musl on the same architecture",
-            ),
             env_inherit(
                 "GH_TOKEN",
                 is_secret = True,
