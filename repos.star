@@ -17,4 +17,5 @@ REPOS = {
     "sed": ["https://github.com/uutils/sed", "0.1.1", ["--path=.", "--profile=release-fast"]],
     "starship": ["https://github.com/starship/starship", "v1.24.2", ["--path=.", "--profile=release"]],
     "xh": ["https://github.com/ducaale/xh", "v0.25.3", ["--path=."]],
+    "zoxide": ["https://github.com/ajeetdsouza/zoxide", "v0.9.9", ["--path=.", "--profile=release"]],
 }
