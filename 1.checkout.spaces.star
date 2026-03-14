@@ -17,6 +17,7 @@ load(
     "checkout_add_hard_link_asset",
     "checkout_add_platform_archive",
     "checkout_add_repo",
+    "checkout_update_asset",
 )
 load(
     "//@star/sdk/star/env.star",
@@ -96,6 +97,27 @@ if info_is_platform_linux():
                 "url": "https://github.com/cross-tools/musl-cross/releases/download/20250929/x86_64-unknown-linux-musl.tar.xz",
             },
         },
+    )
+
+    checkout_update_asset(
+        "eza_rust_toolchain",
+        destination = "repos/eza/rust-toolchain.toml",
+        value = {
+            "toolchain": {
+                "channel": "1.82",
+                "components": [
+                    "rustfmt",
+                    "rustc",
+                    "rust-src",
+                    "rust-analyzer",
+                    "cargo",
+                    "clippy",
+                ],
+                "profile": "minimal",
+                "targets": ["x86_64-unknown-linux-musl", "aarch64-unknown-linux-musl"],
+            },
+        },
+        deps = [":repos/eza"],
     )
 
     PATHS = {
