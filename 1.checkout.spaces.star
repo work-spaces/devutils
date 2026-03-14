@@ -49,7 +49,7 @@ if not info_is_ci():
 spaces_add_devutils(
     "spaces0",
     "v0.15.28",
-    "devutils-v0.1.5",
+    devutils_version = None,
     system_paths = ["/usr/bin", "/bin"],
 )
 spaces_add_star_formatter("star_formatter", configure_zed = True, deps = ["spaces0"])
@@ -123,6 +123,11 @@ if info_is_platform_linux():
             env_assign(
                 "CC_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
+                help = "Let cargo know what CC to use for musl",
+            ),
+            env_assign(
+                "CFLAGS_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
+                value = "-Wno-incompatible-pointer-types",
                 help = "Let cargo know what CC to use for musl",
             ),
             env_assign(
