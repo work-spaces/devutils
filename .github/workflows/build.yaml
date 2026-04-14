@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "spaces target to build (e.g. //devutils:install)"
+        required: true
+        type: string
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-14
+          - runner: ubuntu-22.04
+
+    runs-on: ${{ matrix.runner }}
+
+    steps:
+      - uses: work-spaces/spaces-checkout-run@1211fe26744c3407ff6183f39186471964579b5c
+        with:
+          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }}
+          run: ${{ inputs.target }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
