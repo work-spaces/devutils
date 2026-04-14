@@ -7,7 +7,7 @@ Load the spaces starlark SDK and packages repositories.
 checkout.update_env(
     rule = {"name": "sysroot_env_path"},
     env = {
-        "paths": ["{}/sysroot/bin".format(workspace.get_absolute_path())],
+        "paths": ["{}/sysroot/bin".format(workspace.get_absolute_path()), "/usr/bin", "/bin"],
     },
 )
 

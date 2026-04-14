@@ -68,7 +68,10 @@ checkout_add_hard_link_asset(
 rust_add(
     "rust_toolchain",
     version = "1.93",
-    deps = ["spaces0", ":rust_toolchain_toml"],
+    deps = [
+        #"spaces0",
+        ":rust_toolchain_toml",
+    ],
     rust_toolchain_toml_dir = "//.",
 )
 
