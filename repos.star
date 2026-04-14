@@ -13,6 +13,7 @@ REPOS = {
     "fd-find": ["https://github.com/sharkdp/fd", "v10.3.0", ["--path=.", "--profile=release"]],
     "findutils": ["https://github.com/uutils/findutils", "0.8.0", ["--path=.", "--profile=dist"]],
     "hyperfine": ["https://github.com/sharkdp/hyperfine", "v1.20.0", ["--path=.", "--profile=release"]],
+    "ouch": ["https://github.com/ouch-org/ouch", "0.6.1", ["--path=.", "--profile=release"]],
     "ripgrep": ["https://github.com/BurntSushi/ripgrep", "15.1.0", ["--path=.", "--profile=release-lto"]],
     "rm-improved": ["https://github.com/nivekuil/rip", "0.13.1", ["--path=.", "--profile=release", "--locked"]],
     "sed": ["https://github.com/uutils/sed", "0.1.1", ["--path=.", "--profile=release-fast"]],
