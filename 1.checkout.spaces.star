@@ -47,15 +47,15 @@ if not info_is_ci():
 
     starship_add_bash("starship0", shortcuts = SHORTCUTS)
 
-spaces_add_devutils(
-    "spaces0",
-    "v0.15.34",
-    devutils_version = None,
-    system_paths = ["/usr/bin", "/bin"],
-)
-spaces_add_star_formatter("star_formatter", configure_zed = True, deps = ["spaces0"])
+    spaces_add_devutils(
+        "spaces0",
+        "v0.15.34",
+        devutils_version = None,
+        system_paths = ["/usr/bin", "/bin"],
+    )
+    spaces_add_star_formatter("star_formatter", configure_zed = True, deps = ["spaces0"])
 
-package_add("github.com", "cli", "cli", "v2.87.3")
+    package_add("github.com", "cli", "cli", "v2.87.3")
 
 RUST_TOOLCHAIN = "rust-linux-toolchain" if info_is_platform_linux() else "rust-macos-toolchain"
 
@@ -68,7 +68,10 @@ checkout_add_hard_link_asset(
 rust_add(
     "rust_toolchain",
     version = "1.93",
-    deps = ["spaces0", ":rust_toolchain_toml"],
+    deps = [
+        #"spaces0",
+        ":rust_toolchain_toml",
+    ],
     rust_toolchain_toml_dir = "//.",
 )
 
