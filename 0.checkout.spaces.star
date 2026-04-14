@@ -2,11 +2,6 @@
 Load the spaces starlark SDK and packages repositories.
 """
 
-workspace.set_locks(locks = {
-    "@star/sdk": "v0.3.25",
-    "@star/packages": "v0.2.40",
-})
-
 # Ensure tools checked out to sysroot/bin are available
 # during checkout_add_exec() calls
 checkout.update_env(
@@ -20,7 +15,7 @@ checkout.add_repo(
     rule = {"name": "@star/sdk"},
     repo = {
         "url": "https://github.com/work-spaces/sdk",
-        "rev": "56cf21172dd19747776f67dd0cf5bc0d043f63a6",
+        "rev": "v0.3.27",
         "checkout": "Revision",
         "clone": "Default",
     },
@@ -30,7 +25,7 @@ checkout.add_repo(
     rule = {"name": "@star/packages"},
     repo = {
         "url": "https://github.com/work-spaces/packages",
-        "rev": "b935e0b3b97d5db9ef8349d513745c4fa8f68f55",
+        "rev": "v0.2.45",
         "checkout": "Revision",
         "clone": "Default",
     },
