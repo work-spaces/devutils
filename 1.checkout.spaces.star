@@ -2,6 +2,7 @@
 Checkout rules for getting repos to build the devutils
 """
 
+load("//@star/packages/star/musl-gcc.star", "musl_gcc_add")
 load("//@star/packages/star/package.star", "package_add")
 load("//@star/packages/star/rust.star", "rust_add")
 load(
@@ -81,23 +82,7 @@ for (key, value) in REPOS.items():
     )
 
 if info_is_platform_linux():
-    checkout_add_platform_archive(
-        "musl-gcc",
-        platforms = {
-            "linux-aarch64": {
-                "add_prefix": "sysroot",
-                "link": "Hard",
-                "sha256": "28a1d26f14f8ddc3aed31f20705fe696777400eb5952d90470a7e6e2dd1175bb",
-                "url": "https://github.com/cross-tools/musl-cross/releases/download/20250929/aarch64-unknown-linux-musl.tar.xz",
-            },
-            "linux-x86_64": {
-                "add_prefix": "sysroot",
-                "link": "Hard",
-                "sha256": "6534870abd7dc327fd2e14cc53972d0552b21f47db5769505534f788537e3544",
-                "url": "https://github.com/cross-tools/musl-cross/releases/download/20250929/x86_64-unknown-linux-musl.tar.xz",
-            },
-        },
-    )
+    musl_gcc_add("musl_gcc_20250929")
 
     checkout_update_asset(
         "eza_rust_toolchain",
