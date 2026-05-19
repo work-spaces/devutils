@@ -86,8 +86,8 @@ if info_is_platform_linux():
             "linux-aarch64": {
                 "add_prefix": "sysroot",
                 "link": "Hard",
-                "sha256": "28a1d26f14f8ddc3aed31f20705fe696777400eb5952d90470a7e6e2dd1175bb",
-                "url": "https://github.com/cross-tools/musl-cross/releases/download/20250929/aarch64-unknown-linux-musl.tar.xz",
+                "sha256": "7d86fa59b45da577a39be3674ae846b992122ee2bb73c218adbabb8a40c3d974",
+                "url": "https://github.com/work-spaces/devutils/releases/download/devutils-v0.1.9/aarch64-unknown-linux-musl.tar.xz",
             },
             "linux-x86_64": {
                 "add_prefix": "sysroot",
