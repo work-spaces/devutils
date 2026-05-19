@@ -44,12 +44,11 @@ SPACES_CHECKOUT_PATH = workspace_get_path_to_checkout()
 
 if not info_is_ci():
     SHORTCUTS = {}
-
     starship_add_bash("starship0", shortcuts = SHORTCUTS)
 
 spaces_add_devutils(
     "spaces0",
-    "v0.15.34",
+    "v0.15.42",
     devutils_version = None,
     system_paths = ["/usr/bin", "/bin"],
 )
@@ -87,8 +86,8 @@ if info_is_platform_linux():
             "linux-aarch64": {
                 "add_prefix": "sysroot",
                 "link": "Hard",
-                "sha256": "28a1d26f14f8ddc3aed31f20705fe696777400eb5952d90470a7e6e2dd1175bb",
-                "url": "https://github.com/cross-tools/musl-cross/releases/download/20250929/aarch64-unknown-linux-musl.tar.xz",
+                "sha256": "45391baada5bd0b78fd888ae7ee45e4970aebee98f64dd9eb7717ecedcbfb0d6",
+                "url": "https://github.com/work-spaces/devutils/releases/download/devutils-v0.1.9/aarch64-unknown-linux-musl.tar.xz",
             },
             "linux-x86_64": {
                 "add_prefix": "sysroot",
