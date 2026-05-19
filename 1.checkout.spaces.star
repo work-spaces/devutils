@@ -44,12 +44,11 @@ SPACES_CHECKOUT_PATH = workspace_get_path_to_checkout()
 
 if not info_is_ci():
     SHORTCUTS = {}
-
     starship_add_bash("starship0", shortcuts = SHORTCUTS)
 
 spaces_add_devutils(
     "spaces0",
-    "v0.15.34",
+    "v0.15.42",
     devutils_version = None,
     system_paths = ["/usr/bin", "/bin"],
 )
