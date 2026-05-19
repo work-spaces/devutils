@@ -86,7 +86,7 @@ if info_is_platform_linux():
             "linux-aarch64": {
                 "add_prefix": "sysroot",
                 "link": "Hard",
-                "sha256": "7d86fa59b45da577a39be3674ae846b992122ee2bb73c218adbabb8a40c3d974",
+                "sha256": "45391baada5bd0b78fd888ae7ee45e4970aebee98f64dd9eb7717ecedcbfb0d6",
                 "url": "https://github.com/work-spaces/devutils/releases/download/devutils-v0.1.9/aarch64-unknown-linux-musl.tar.xz",
             },
             "linux-x86_64": {
