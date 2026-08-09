@@ -78,7 +78,7 @@ run_add(
 
 gh_add_publish_archive(
     "devutils",
-    input = "build/install",
+    input = "//build/install",
     version = DEVUTILS_VERSION,
     deploy_repo = "https://github.com/work-spaces/devutils",
     deps = install_deps,
