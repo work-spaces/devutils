@@ -62,7 +62,7 @@ if info_is_platform_linux():
     run_add_exec(
         "rustup_add_musl",
         command = "rustup",
-        args = ["add", "{}-unknown-linux-musl".format(arch)],
+        args = ["target", "add", "{}-unknown-linux-musl".format(arch)],
     )
     rustup_dep = ":rustup_add_musl"
 
