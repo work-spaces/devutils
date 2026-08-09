@@ -98,27 +98,6 @@ if info_is_platform_linux():
         },
     )
 
-    checkout_update_asset(
-        "eza_rust_toolchain",
-        destination = "repos/eza/rust-toolchain.toml",
-        value = {
-            "toolchain": {
-                "channel": "1.82",
-                "components": [
-                    "rustfmt",
-                    "rustc",
-                    "rust-src",
-                    "rust-analyzer",
-                    "cargo",
-                    "clippy",
-                ],
-                "profile": "minimal",
-                "targets": ["x86_64-unknown-linux-musl", "aarch64-unknown-linux-musl"],
-            },
-        },
-        deps = [":repos/eza"],
-    )
-
     PATHS = {
         "linux-aarch64": "aarch64-unknown-linux-musl",
         "linux-x86_64": "x86_64-unknown-linux-musl",
@@ -160,11 +139,6 @@ if info_is_platform_linux():
                 "CARGO_TARGET_{}_UNKNOWN_LINUX_MUSL_LINKER".format(ARCH[PLATFORM].upper()),
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
                 help = "Let cargo know what linker to use for musl",
-            ),
-            env_inherit(
-                "GH_TOKEN",
-                is_secret = True,
-                help = "Add GH_TOKEN to env for use with gh publish",
             ),
         ],
     )
