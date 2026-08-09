@@ -66,7 +66,7 @@ checkout_add_hard_link_asset(
 
 rust_add(
     "rust_toolchain",
-    version = "1.93",
+    version = "1.94",
     deps = [":spaces0", ":rust_toolchain_toml"],
     rust_toolchain_toml_dir = "//.",
 )
@@ -98,27 +98,6 @@ if info_is_platform_linux():
         },
     )
 
-    checkout_update_asset(
-        "eza_rust_toolchain",
-        destination = "repos/eza/rust-toolchain.toml",
-        value = {
-            "toolchain": {
-                "channel": "1.82",
-                "components": [
-                    "rustfmt",
-                    "rustc",
-                    "rust-src",
-                    "rust-analyzer",
-                    "cargo",
-                    "clippy",
-                ],
-                "profile": "minimal",
-                "targets": ["x86_64-unknown-linux-musl", "aarch64-unknown-linux-musl"],
-            },
-        },
-        deps = [":repos/eza"],
-    )
-
     PATHS = {
         "linux-aarch64": "aarch64-unknown-linux-musl",
         "linux-x86_64": "x86_64-unknown-linux-musl",
@@ -132,6 +111,10 @@ if info_is_platform_linux():
     PLATFORM = info_get_platform_name()
 
     MUSL_BIN_PATH = "{}/sysroot/{}/bin".format(workspace_get_absolute_path(), PATHS[PLATFORM])
+    MUSL_SYSROOT_PATH = "{ws}/sysroot/{platform}/{platform}".format(
+        ws = workspace_get_absolute_path(),
+        platform = PATHS[PLATFORM],
+    )
 
     checkout_add_env_vars(
         "musl-gcc-path",
@@ -161,10 +144,15 @@ if info_is_platform_linux():
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
                 help = "Let cargo know what linker to use for musl",
             ),
-            env_inherit(
-                "GH_TOKEN",
-                is_secret = True,
-                help = "Add GH_TOKEN to env for use with gh publish",
+            env_assign(
+                "PKG_CONFIG_ALLOW_CROSS_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
+                value = "1",
+                help = "Allow pkg-config to be used when cross-compiling for musl",
+            ),
+            env_assign(
+                "PKG_CONFIG_SYSROOT_DIR_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
+                value = MUSL_SYSROOT_PATH,
+                help = "Set the sysroot dir for pkg-config when cross-compiling for musl",
             ),
         ],
     )

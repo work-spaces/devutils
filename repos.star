@@ -16,7 +16,7 @@ REPOS = {
     "ouch": ["https://github.com/ouch-org/ouch", "0.8.1", ["--path=.", "--profile=release"]],
     "ripgrep": ["https://github.com/BurntSushi/ripgrep", "15.2.0", ["--path=.", "--profile=release-lto"]],
     "rm-improved": ["https://github.com/nivekuil/rip", "0.13.1", ["--path=.", "--profile=release", "--locked"]],
-    "sccache": ["https://github.com/mozilla/sccache", "v0.17.0", ["--path=.", "--profile=release"]],
+    "sccache": ["https://github.com/mozilla/sccache", "v0.17.0", ["--path=.", "--profile=release", "--features=vendored-openssl"]],
     "sed": ["https://github.com/uutils/sed", "0.1.1", ["--path=.", "--profile=release-fast"]],
     "starship": ["https://github.com/starship/starship", "v1.26.0", ["--path=.", "--profile=release"]],
     "xh": ["https://github.com/ducaale/xh", "v0.26.2", ["--path=."]],
