@@ -52,7 +52,7 @@ spaces_add_devutils(
     devutils_version = None,
     system_paths = ["/usr/bin", "/bin"],
 )
-spaces_add_star_formatter("star_formatter", configure_zed = True, deps = ["spaces0"])
+spaces_add_star_formatter("star_formatter", configure_zed = True, deps = [":spaces0"])
 
 package_add("github.com", "cli", "cli", "v2.87.3")
 
@@ -67,7 +67,7 @@ checkout_add_hard_link_asset(
 rust_add(
     "rust_toolchain",
     version = "1.93",
-    deps = ["spaces0", ":rust_toolchain_toml"],
+    deps = [":spaces0", ":rust_toolchain_toml"],
     rust_toolchain_toml_dir = "//.",
 )
 
