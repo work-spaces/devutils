@@ -6,6 +6,7 @@ load("//@star/sdk/star/gh.star", "gh_add_publish_archive")
 load(
     "//@star/sdk/star/info.star",
     "info_get_platform_name",
+    "info_is_platform_aarch64",
     "info_is_platform_linux",
     "info_set_max_queue_count",
 )
@@ -54,10 +55,21 @@ def _build_and_publish(name, first_dep, args):
 install_deps = []
 first_dep = None
 
+rustup_dep = None
+
+if info_is_platform_linux():
+    arch = "aarch64" if info_is_platform_aarch64() else "x86_64"
+    run_add_exec(
+        "rustup_add_musl",
+        command = "rustup",
+        args = ["add", "{}-unknown-linux-musl".format(arch)],
+    )
+    rustup_dep = ":rustup_add_musl"
+
 for (key, values) in REPOS.items():
     # Force all other to depend on the first dep so that
     # cargo install will run with rustup on the first go
-    rules = _build_and_publish(key, first_dep, values[2])
+    rules = _build_and_publish(key, first_dep or rustup_dep, values[2])
     if first_dep == None:
         first_dep = rules["install"]
     else:

@@ -111,6 +111,10 @@ if info_is_platform_linux():
     PLATFORM = info_get_platform_name()
 
     MUSL_BIN_PATH = "{}/sysroot/{}/bin".format(workspace_get_absolute_path(), PATHS[PLATFORM])
+    MUSL_SYSROOT_PATH = "{ws}/sysroot/{platform}/{platform}".format(
+        ws = workspace_get_absolute_path(),
+        platform = PATHS[PLATFORM],
+    )
 
     checkout_add_env_vars(
         "musl-gcc-path",
@@ -139,6 +143,16 @@ if info_is_platform_linux():
                 "CARGO_TARGET_{}_UNKNOWN_LINUX_MUSL_LINKER".format(ARCH[PLATFORM].upper()),
                 value = "{}-unknown-linux-musl-gcc".format(ARCH[PLATFORM]),
                 help = "Let cargo know what linker to use for musl",
+            ),
+            env_assign(
+                "PKG_CONFIG_ALLOW_CROSS_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
+                value = "1",
+                help = "Allow pkg-config to be used when cross-compiling for musl",
+            ),
+            env_assign(
+                "PKG_CONFIG_SYSROOT_DIR_{}_unknown_linux_musl".format(ARCH[PLATFORM]),
+                value = MUSL_SYSROOT_PATH,
+                help = "Set the sysroot dir for pkg-config when cross-compiling for musl",
             ),
         ],
     )

@@ -15,8 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - runner: macos-14
-          - runner: macos-13
           - runner: ubuntu-22.04
           - runner: ubuntu-22.04-arm
 
