@@ -15,13 +15,15 @@ jobs:
       matrix:
         include:
           - runner: macos-14
+          - runner: macos-13
+          - runner: windows-2022
           - runner: ubuntu-22.04
           - runner: ubuntu-22.04-arm
 
     runs-on: ${{ matrix.runner }}
 
     steps:
-      - uses: work-spaces/spaces-checkout-run@v0.1.4
+      - uses: work-spaces/spaces-checkout-run@v0.20.7
         with:
           checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }}
           run: ${{ inputs.target }}

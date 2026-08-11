@@ -17,11 +17,14 @@ jobs:
         include:
           - runner: ubuntu-24.04
           - runner: ubuntu-24.04-arm
+          - runner: macos-15
+          - runner: macos-13
+          - runner: windows-2022
 
     runs-on: ${{ matrix.runner }}
 
     steps:
-      - uses: work-spaces/spaces-checkout-run@v0.20.3
+      - uses: work-spaces/spaces-checkout-run@v0.20.7
         with:
           checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }}
           run: //devutils:devutils
