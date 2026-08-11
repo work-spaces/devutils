@@ -3,6 +3,10 @@ name: Publish for Platform
 on:
   workflow_dispatch:
     inputs:
+      tag:
+        description: Tag to publish (defaults to the current ref name)
+        required: false
+        type: string
       runner:
         description: Runner / OS
         required: true
@@ -25,6 +29,6 @@ jobs:
     steps:
       - uses: work-spaces/spaces-checkout-run@v0.20.7
         with:
-          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }}
+          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ inputs.tag || github.ref_name }}
           run: //devutils:devutils
           github-token: ${{ secrets.GITHUB_TOKEN }}
