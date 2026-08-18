@@ -48,7 +48,7 @@ if not info_is_ci():
 
 spaces_add_devutils(
     "spaces0",
-    "v0.20.7",
+    "v0.20.9",
     devutils_version = None,
     system_paths = ["/usr/bin", "/bin"],
 )

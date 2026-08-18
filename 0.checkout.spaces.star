@@ -31,5 +31,5 @@ checkout_add_repo(
 checkout_add_repo(
     "@star/packages",
     url = "https://github.com/work-spaces/packages",
-    rev = "v0.2.67",
+    rev = "v0.2.69",
 )
