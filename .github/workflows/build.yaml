@@ -7,6 +7,11 @@ on:
         description: "spaces target to build (e.g. //devutils:install)"
         required: true
         type: string
+      extra-checkout-args:
+        description: Extra checkout args
+        required: false
+        type: string
+        default: ""
 
 jobs:
   build:
@@ -23,8 +28,8 @@ jobs:
     runs-on: ${{ matrix.runner }}
 
     steps:
-      - uses: work-spaces/spaces-checkout-run@v0.20.9
+      - uses: work-spaces/spaces-checkout-run@v0.21.3
         with:
-          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }}
+          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ github.ref_name }} ${{ inputs.extra-checkout-args }}
           run: ${{ inputs.target }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
