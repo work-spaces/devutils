@@ -25,11 +25,11 @@ checkout_add_env_vars(
 checkout_add_repo(
     "@star/sdk",
     url = "https://github.com/work-spaces/sdk",
-    rev = "v0.4.0",
+    rev = "1733be0c99c327184841cb0000c4525faf5fd3f4",
 )
 
 checkout_add_repo(
     "@star/packages",
     url = "https://github.com/work-spaces/packages",
-    rev = "v0.2.69",
+    rev = "v0.2.73",
 )

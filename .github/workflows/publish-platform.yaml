@@ -7,6 +7,11 @@ on:
         description: Tag to publish (defaults to the current ref name)
         required: false
         type: string
+      target:
+        description: Target to execute (default is build and publish)
+        required: false
+        type: string
+        default: "//devutils:devutils"
       runner:
         description: Runner / OS
         required: true
@@ -17,6 +22,11 @@ on:
           - macos-15
           - macos-13
           - windows-2022
+      extra-checkout-args:
+        description: Extra checkout args
+        required: false
+        type: string
+        default: ""
 
 
 permissions:
@@ -27,8 +37,8 @@ jobs:
     runs-on: ${{ inputs.runner }}
 
     steps:
-      - uses: work-spaces/spaces-checkout-run@v0.20.9
+      - uses: work-spaces/spaces-checkout-run@v0.21.3
         with:
-          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ inputs.tag || github.ref_name }}
-          run: //devutils:devutils
+          checkout: --url=https://github.com/work-spaces/devutils --rev=${{ inputs.tag || github.ref_name }} ${{ inputs.extra-checkout-args }}
+          run: ${{ inputs.target }}
           github-token: ${{ secrets.GITHUB_TOKEN }}

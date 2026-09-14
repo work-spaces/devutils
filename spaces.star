@@ -17,10 +17,11 @@ load(
 )
 load("//@star/prelude/rules/visibility.star", "visibility_private")
 load("//@star/prelude/rules/ws.star", "workspace_get_absolute_path")
+load("//@star/sdk/star/cmake.star", "cmake_add_configure_build_install")
 load("//@star/sdk/star/gh.star", "gh_add_publish_archive")
-load("repos.star", "REPOS")
+load("star/internal/repos.star", "REPOS", "repos_is_included")
 
-DEVUTILS_VERSION = "0.1.15"
+DEVUTILS_VERSION = "0.1.16"
 
 info_set_max_queue_count(1)
 
@@ -63,12 +64,33 @@ if info_is_platform_linux():
     rustup_dep = ":rustup_add_musl"
 
 last_dep = rustup_dep
+
+if repos_is_included("fish"):
+    run_add_exec(
+        "patch_fish",
+        command = "devutils/scripts/patch-fish.exec.star",
+    )
+
+    extra_deps = [last_dep] if last_dep != None else []
+    cmake_add_configure_build_install(
+        "fish_shell",
+        source_directory = "repos/fish",
+        configure_args = [
+            "-DCMAKE_BUILD_TYPE:STRING=Release",
+            "-DFISH_USE_SYSTEM_PCRE2:BOOL=OFF",
+        ],
+        deps = [":patch_fish"] + extra_deps,
+    )
+    last_dep = ":fish_shell"
+    install_deps.append(":fish_shell")
+
 for (key, values) in REPOS.items():
     # Force all other to depend on the first dep so that
     # cargo install will run with rustup on the first go
-    _build_and_publish(key, last_dep, values[2])
-    last_dep = key
-    install_deps.append(key)
+    if repos_is_included(key):
+        _build_and_publish(key, last_dep, values[2])
+        last_dep = key
+        install_deps.append(key)
 
 run_add(
     "install",
