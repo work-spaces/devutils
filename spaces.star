@@ -9,7 +9,6 @@ load(
     "info_is_platform_linux",
     "info_set_max_queue_count",
 )
-load("//@star/prelude/rules/rules.star", "rules_as_rule", "rules_new")
 load(
     "//@star/prelude/rules/run.star",
     "run_add",
@@ -21,7 +20,7 @@ load("//@star/sdk/star/cmake.star", "cmake_add_configure_build_install")
 load("//@star/sdk/star/gh.star", "gh_add_publish_archive")
 load("star/internal/repos.star", "REPOS", "repos_is_included")
 
-DEVUTILS_VERSION = "0.1.16"
+DEVUTILS_VERSION = "0.2.0"
 
 info_set_max_queue_count(1)
 
