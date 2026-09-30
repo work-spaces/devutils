@@ -26,15 +26,12 @@ load(
     "//@star/prelude/rules/checkout.star",
     "checkout_add_any_assets",
     "checkout_add_env_vars",
-    "checkout_add_exec",
     "checkout_add_platform_archive",
     "checkout_add_repo",
-    "checkout_update_asset",
 )
 load(
     "//@star/prelude/rules/env.star",
     "env_assign",
-    "env_inherit",
     "env_prepend",
     "env_script",
 )
@@ -46,7 +43,6 @@ load(
 load(
     "//@star/sdk/star/checkout-config.star",
     "checkout_config_add_markdown",
-    "checkout_config_load_option",
     "checkout_config_register_optin",
     "checkout_config_register_optout",
 )
