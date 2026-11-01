@@ -20,7 +20,7 @@ load("//@star/sdk/star/cmake.star", "cmake_add_configure_build_install")
 load("//@star/sdk/star/gh.star", "gh_add_publish_archive")
 load("star/internal/repos.star", "REPOS", "repos_is_included")
 
-DEVUTILS_VERSION = "0.3.0"
+DEVUTILS_VERSION = "0.3.1"
 
 info_set_max_queue_count(1)
 
