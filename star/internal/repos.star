@@ -12,7 +12,7 @@ REPOS_INCLUDE_ALL = "DEVUTILS_INCLUDE_ALL"
 REPOS = {
     "bat": ["https://github.com/sharkdp/bat", "v0.26.1", ["--path=.", "--profile=release"]],
     "coreutils": ["https://github.com/uutils/coreutils", "0.12.0", ["--path=.", "--profile=release-small", "--features=feat_os_unix_musl", "--locked"]],
-    "diffutils": ["https://github.com/uutils/diffutils", "v0.6.0", ["--path=.", "--profile=release-fast"]],
+    "diffutils": ["https://github.com/uutils/diffutils", "v0.6.0", ["--path=.", "--profile=dist"]],
     "eza": ["https://github.com/eza-community/eza", "v0.23.5", ["--path=.", "--no-default-features", "--profile=release", "--locked"]],
     "fd-find": ["https://github.com/sharkdp/fd", "v10.5.0", ["--path=.", "--profile=release", "--locked"]],
     "findutils": ["https://github.com/uutils/findutils", "0.10.0", ["--path=.", "--profile=dist", "--locked"]],
