@@ -21,7 +21,7 @@ REPOS = {
     "ripgrep": ["https://github.com/BurntSushi/ripgrep", "15.2.0", ["--path=.", "--profile=release-lto", "--locked"]],
     "rm-improved": ["https://github.com/nivekuil/rip", "0.13.1", ["--path=.", "--profile=release", "--locked"]],
     "sccache": ["https://github.com/mozilla/sccache", "v0.19.0", ["--path=.", "--profile=release", "--features=vendored-openssl", "--locked"]],
-    "sed": ["https://github.com/uutils/sed", "0.3.0", ["--path=.", "--profile=release-fast", "--locked"]],
+    "sed": ["https://github.com/uutils/sed", "0.3.0", ["--path=.", "--profile=dist", "--locked"]],
     "starship": ["https://github.com/starship/starship", "v1.27.0", ["--path=.", "--profile=release", "--locked"]],
     "wrkflw": ["https://github.com/bahdotsh/wrkflw", "v0.8.0", ["--path=./crates/wrkflw", "--profile=release", "--locked"]],
     "xh": ["https://github.com/ducaale/xh", "v0.26.3", ["--path=.", "--locked"]],
