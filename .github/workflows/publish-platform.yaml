@@ -37,7 +37,7 @@ jobs:
     runs-on: ${{ inputs.runner }}
 
     steps:
-      - uses: work-spaces/spaces-checkout-run@v0.21.3
+      - uses: work-spaces/spaces-checkout-run@v0.23.0
         with:
           checkout: --url=https://github.com/work-spaces/devutils --rev=${{ inputs.tag || github.ref_name }} ${{ inputs.extra-checkout-args }}
           run: ${{ inputs.target }}
